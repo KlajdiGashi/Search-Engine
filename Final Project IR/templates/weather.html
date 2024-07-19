@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        .error-message {
+            color: #ff6347; /* Tomato */
+        }
+        .weather-data {
+            margin-top: 20px;
+        }
+        .weather-data p {
+            margin: 5px 0;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Current Weather</h1>
+        {% if error %}
+            <p class="error-message">Failed to retrieve weather data.</p>
+        {% else %}
+            <div class="weather-data">
+                <p>Temperature: {{ temperature }} °C</p>
+                <p>Description: {{ description }}</p>
+                <p>Humidity: {{ humidity }}%</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

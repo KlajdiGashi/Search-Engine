@@ -1,0 +1,24 @@
+CREATE DATABASE IF NOT EXISTS IRProject;
+
+USE irproject;
+
+CREATE INDEX idx_users_username ON user (username);
+CREATE INDEX idx_users_email ON user (email);
+
+DROP INDEX idx_users_username ON user;
+DROP INDEX idx_users_email ON user;
+
+ALTER TABLE document MODIFY COLUMN content LONGTEXT;
+
+select * from document;
+
+SELECT * FROM document WHERE content LIKE '%homework%';
+EXPLAIN SELECT * FROM document WHERE content LIKE '%homework%';
+
+CREATE INDEX idx_title ON document(title);
+CREATE FULLTEXT INDEX idx_content ON document(content);
+
+SELECT * FROM document WHERE MATCH(content) AGAINST('homework' IN NATURAL LANGUAGE MODE);
+EXPLAIN SELECT * FROM document WHERE MATCH(content) AGAINST('homework' IN NATURAL LANGUAGE MODE);
+DROP INDEX idx_title ON document;
+DROP INDEX idx_content ON document;
